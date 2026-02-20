@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager - CloudFiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/list-view-fix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-cloud-arrow-up brand-icon"></i>
+                <span>CloudFiles</span>
+            </div>
+
+            <div class="new-dropdown-container" style="position: relative;">
+                <button class="new-btn" id="newBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New</span>
+                </button>
+                <div class="dropdown-menu" id="newDropdown" style="width: 200px; top: 110%; left: 0;">
+                    <button class="dropdown-option" id="newFolderTrigger">
+                        <i class="fa-solid fa-folder-plus"></i> New Folder
+                    </button>
+                    <button class="dropdown-option" id="fileUploadTrigger">
+                        <i class="fa-solid fa-file-arrow-up"></i> File Upload
+                    </button>
+                    <button class="dropdown-option" id="folderUploadTrigger">
+                        <i class="fa-solid fa-folder-arrow-up icon-folder-upload"></i> Folder Upload
+                    </button>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="dashboard.html" class="nav-item active">
+                    <i class="fa-solid fa-hard-drive"></i>
+                    <span>File Manager</span>
+                </a>
+                <a href="computers.html" class="nav-item">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>Computers</span>
+                </a>
+                <a href="shared.html" class="nav-item">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Shared with me</span>
+                </a>
+                <a href="recent.html" class="nav-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Recent</span>
+                </a>
+                <a href="starred.html" class="nav-item">
+                    <i class="fa-regular fa-star"></i>
+                    <span>Starred</span>
+                </a>
+                <a href="trash.html" class="nav-item">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span>Trash</span>
+                </a>
+            </nav>
+
+            <div class="storage-info">
+                <div class="storage-bar">
+                    <div class="storage-used" style="width: 45%"></div>
+                </div>
+                <p>6.8 GB of 15 GB used</p>
+            </div>
+        </aside>
+
+        <!-- Sidebar Overlay (Mobile) -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="bottom-nav-item active">
+                <i class="fa-solid fa-hard-drive"></i>
+                <span>Files</span>
+            </a>
+            <a href="shared.html" class="bottom-nav-item">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Shared</span>
+            </a>
+            <a href="recent.html" class="bottom-nav-item">
+                <i class="fa-regular fa-clock"></i>
+                <span>Recent</span>
+            </a>
+            <a href="starred.html" class="bottom-nav-item">
+                <i class="fa-regular fa-star"></i>
+                <span>Starred</span>
+            </a>
+            <button class="bottom-nav-item" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search in Drive">
+                    <div class="filter-dropdown-container">
+                        <button class="filter-btn" id="filterBtn"><i class="fa-solid fa-sliders"></i></button>
+                        <div class="dropdown-menu" id="filterDropdown">
+                            <span class="dropdown-header-label">File Type</span>
+                            <button class="dropdown-option active" data-filter="all">
+                                <i class="fa-solid fa-border-all"></i> All Files
+                            </button>
+                            <button class="dropdown-option" data-filter="image">
+                                <i class="fa-regular fa-image"></i> Images
+                            </button>
+                            <button class="dropdown-option" data-filter="document">
+                                <i class="fa-regular fa-file-lines"></i> Documents
+                            </button>
+                            <button class="dropdown-option" data-filter="spreadsheet">
+                                <i class="fa-regular fa-file-excel"></i> Spreadsheets
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-actions">
+                    <button class="action-btn theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fa-regular fa-moon"></i>
+                    </button>
+
+                    <!-- Notification Bell -->
+                    <div class="notification-wrapper" id="notificationTrigger">
+                        <button class="action-btn">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="notification-badge"></span>
+                        </button>
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <div class="notification-header">
+                                <span>Notifications</span>
+                                <button class="mark-read">Mark all read</button>
+                            </div>
+                            <div class="notification-list">
+                                <!-- Storage Limit -->
+                                <div class="notification-item unread">
+                                    <div class="notify-icon warning">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                    </div>
+                                    <div class="notify-content">
+                                        <span class="notify-title">Storage Limit Reached</span>
+                                        <span class="notify-desc">You have used 95% of your total storage. Upgrade now
+                                            to avoid interruption.</span>
+                                        <span class="notify-time">10 mins ago</span>
+                                    </div>
+                                </div>
+                                <!-- File Shared -->
+                                <div class="notification-item unread">
+                                    <div class="notify-icon info">
+                                        <i class="fa-solid fa-share-nodes"></i>
+                                    </div>
+                                    <div class="notify-content">
+                                        <span class="notify-title">File shared with you</span>
+                                        <span class="notify-desc"><strong>Sarah Jenkins</strong> shared "Q4 Marketing
+                                            Plan" with you.</span>
+                                        <span class="notify-time">1 hour ago</span>
+                                    </div>
+                                </div>
+                                <!-- File Expired -->
+                                <div class="notification-item">
+                                    <div class="notify-icon expired">
+                                        <i class="fa-regular fa-clock"></i>
+                                    </div>
+                                    <div class="notify-content">
+                                        <span class="notify-title">File link expired</span>
+                                        <span class="notify-desc">The public link for "Project Assets.zip" has
+                                            expired.</span>
+                                        <span class="notify-time">Yesterday</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Support Button -->
+                    <div class="notification-wrapper" id="supportTrigger" style="margin-right: -0.5rem;">
+                        <button class="action-btn" title="Support">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </button>
+                        <div class="profile-dropdown" id="supportDropdown" style="width: 220px; right: 0;">
+                            <button class="dropdown-item" id="helpBtn">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Help</span>
+                            </button>
+                            <button class="dropdown-item" id="feedbackBtn">
+                                <i class="fa-solid fa-comment-dots"></i>
+                                <span>Send Feedback</span>
+                            </button>
+                            <button class="dropdown-item" id="teamsBtn">
+                                <i class="fa-solid fa-people-group"></i>
+                                <span>Teams</span>
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item" id="policyBtn">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Policy</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="user-profile" id="profileDropdownTrigger">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User">
+                        <!-- Dropdown Menu -->
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <span class="user-name">John Doe</span>
+                                <span class="user-email">john.doe@example.com</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <button class="dropdown-item">
+                                <i class="fa-regular fa-circle-question"></i>
+                                <span>Help</span>
+                            </button>
+                            <button class="dropdown-item">
+                                <i class="fa-solid fa-gear"></i>
+                                <span>Settings</span>
+                            </button>
+                            <div class="dropdown-divider"></div>
+                            <a href="../index.html" class="dropdown-item">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- File Explorer -->
+            <div class="file-explorer">
+                <div class="breadcrumb">
+                    <h2>File Manager</h2>
+                    <div class="view-options">
+                        <button class="view-btn" id="listViewBtn"><i class="fa-solid fa-list"></i></button>
+                        <button class="view-btn active" id="gridViewBtn"><i class="fa-solid fa-border-all"></i></button>
+                        <button class="info-btn"><i class="fa-solid fa-circle-info"></i></button>
+                    </div>
+                </div>
+
+                <!-- Suggested / Quick Access -->
+                <section class="section-group">
+                    <h3>Suggested</h3>
+                    <div class="grid-row">
+                        <div class="file-card">
+                            <div class="file-preview">
+                                <i class="fa-regular fa-image"></i>
+                            </div>
+                            <div class="file-info">
+                                <span class="file-name">Project Proposal.pdf</span>
+                                <span class="file-meta">You opened just now</span>
+                            </div>
+                        </div>
+                        <div class="file-card">
+                            <div class="file-preview">
+                                <i class="fa-regular fa-file-excel"></i>
+                            </div>
+                            <div class="file-info">
+                                <span class="file-name">Q4 Budget.xlsx</span>
+                                <span class="file-meta">Edited yesterday</span>
+                            </div>
+                        </div>
+                        <div class="file-card">
+                            <div class="file-preview">
+                                <i class="fa-regular fa-file-word"></i>
+                            </div>
+                            <div class="file-info">
+                                <span class="file-name">Meeting Notes.docx</span>
+                                <span class="file-meta">Edited last week</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Folders -->
+                <section class="section-group">
+                    <h3>Folders</h3>
+                    <div class="grid-row folders">
+                        <div class="folder-card">
+                            <i class="fa-solid fa-folder"></i>
+                            <span>Marketing Assets</span>
+                        </div>
+                        <div class="folder-card">
+                            <i class="fa-solid fa-folder"></i>
+                            <span>Financial Reports</span>
+                        </div>
+                        <div class="folder-card">
+                            <i class="fa-solid fa-folder"></i>
+                            <span>Client Projects</span>
+                        </div>
+                        <div class="folder-card">
+                            <i class="fa-solid fa-folder"></i>
+                            <span>Personal</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Files -->
+                <section class="section-group">
+                    <h3>Files</h3>
+                    <div class="grid-row files">
+                        <div class="file-card full-preview">
+                            <div class="img-preview" style="background-color: #e0e0e0;"></div>
+                            <div class="file-footer">
+                                <i class="fa-regular fa-image blue-icon"></i>
+                                <span>Logo_Design_v2.png</span>
+                            </div>
+                        </div>
+                        <!-- More files can be added here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <!-- File Detail Modal -->
+    <div id="fileDetailModal" class="modal-overlay">
+        <div class="modal-content file-preview-modal">
+            <button class="close-modal" id="closeDetailModal"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="preview-section">
+                <!-- Image Preview -->
+                <div id="imagePreview" class="preview-container" style="display: none;">
+                    <img src="" alt="File Preview" class="file-preview-image">
+                </div>
+                <!-- Icon Preview -->
+                <div id="iconPreview" class="preview-container icon-only">
+                    <i class="fa-regular fa-file"></i>
+                </div>
+            </div>
+
+            <div class="file-details-container">
+                <h3 class="file-name-heading" id="detailFileName">File Name.ext</h3>
+
+                <div class="meta-grid">
+                    <div class="meta-item">
+                        <span class="meta-label">Type</span>
+                        <span class="meta-value" id="detailFileType">PDF Document</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Size</span>
+                        <span class="meta-value" id="detailFileSize">2.4 MB</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Uploaded by</span>
+                        <div class="meta-user">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" class="avatar-xs">
+                            <span class="meta-value" id="detailOwner">John Doe</span>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Upload date</span>
+                        <span class="meta-value" id="detailUploadDate">Oct 24, 2025</span>
+                    </div>
+                </div>
+
+                <div class="modal-actions-row">
+                    <button class="btn-secondary" id="closeDetailBtn">
+                        <i class="fa-solid fa-x"></i> Close
+                    </button>
+                    <button class="btn-secondary" id="versionHistoryBtn">
+                        <i class="fa-solid fa-code-branch"></i> Version History
+                    </button>
+                    <button class="btn-primary" id="downloadFileBtn">
+                        <i class="fa-solid fa-download"></i> Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Folder Modal -->
+    <div id="newFolderModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content"
+            style="background: var(--surface); padding: 2rem; border-radius: 12px; width: 90%; max-width: 400px; box-shadow: var(--shadow-lg);">
+            <h3 style="margin-top: 0; margin-bottom: 1.5rem; color: var(--text-primary);">Create New Folder</h3>
+            <div style="margin-bottom: 1.5rem;">
+                <input type="text" id="folderNameInput" placeholder="Untitled folder"
+                    style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--bg-light); color: var(--text-primary);">
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <button id="cancelFolderBtn"
+                    style="padding: 0.5rem 1rem; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; font-weight: 500;">Cancel</button>
+                <button id="createFolderBtn"
+                    style="padding: 0.5rem 1.5rem; border: none; background: var(--primary); color: white; border-radius: 6px; cursor: pointer; font-weight: 500;">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="fileContextMenu">
+        <div class="context-item" data-action="preview">
+            <i class="fa-regular fa-eye"></i> Preview
+        </div>
+        <div class="context-item" data-action="open-with">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open with
+        </div>
+        <div class="context-item" data-action="share">
+            <i class="fa-solid fa-user-plus"></i> Share with
+        </div>
+        <div class="context-item" data-action="download">
+            <i class="fa-solid fa-download"></i> Download
+        </div>
+        <div class="context-item" data-action="star">
+            <i class="fa-regular fa-star"></i> <span>Add to Starred</span>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="context-item delete" data-action="delete">
+            <i class="fa-regular fa-trash-can"></i> Delete
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal-overlay" style="display: none; align-items: center; justify-content: center;">
+        <div class="modal-content"
+            style="background: var(--surface); width: 90%; max-width: 600px; max-height: 80vh; border-radius: 12px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; overflow: hidden;">
+            <div class="modal-header"
+                style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; font-size: 1.25rem; color: var(--text-primary);"><i
+                        class="fa-solid fa-circle-question" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                    Help Center</h3>
+                <button class="close-modal-btn" id="closeHelpBtn"
+                    style="background: none; border: none; font-size: 1.25rem; color: var(--text-secondary); cursor: pointer;"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" style="padding: 0; overflow-y: auto;">
+                <div class="help-search"
+                    style="padding: 1.5rem; background: var(--bg-light); border-bottom: 1px solid var(--border-color);">
+                    <div style="position: relative;">
+                        <i class="fa-solid fa-magnifying-glass"
+                            style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary);"></i>
+                        <input type="text" placeholder="Search for help articles..."
+                            style="width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; outline: none;">
+                    </div>
+                </div>
+                <div class="help-sections" style="padding: 1.5rem;">
+                    <div class="help-section" style="margin-bottom: 1.5rem;">
+                        <h4 style="margin: 0 0 1rem 0; color: var(--text-primary);">Popular Topics</h4>
+                        <div class="help-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <a href="#" class="help-item"
+                                style="display: flex; align-items: center; padding: 0.75rem; border-radius: 8px; text-decoration: none; color: var(--text-primary); transition: background 0.2s;">
+                                <i class="fa-regular fa-file" style="margin-right: 0.75rem; color: var(--primary);"></i>
+                                <span>How to upload files and folders?</span>
+                                <i class="fa-solid fa-chevron-right"
+                                    style="margin-left: auto; font-size: 0.8rem; color: var(--text-secondary);"></i>
+                            </a>
+                            <a href="#" class="help-item"
+                                style="display: flex; align-items: center; padding: 0.75rem; border-radius: 8px; text-decoration: none; color: var(--text-primary); transition: background 0.2s;">
+                                <i class="fa-solid fa-share-nodes"
+                                    style="margin-right: 0.75rem; color: var(--primary);"></i>
+                                <span>Sharing files with team members</span>
+                                <i class="fa-solid fa-chevron-right"
+                                    style="margin-left: auto; font-size: 0.8rem; color: var(--text-secondary);"></i>
+                            </a>
+                            <a href="#" class="help-item"
+                                style="display: flex; align-items: center; padding: 0.75rem; border-radius: 8px; text-decoration: none; color: var(--text-primary); transition: background 0.2s;">
+                                <i class="fa-regular fa-trash-can"
+                                    style="margin-right: 0.75rem; color: var(--primary);"></i>
+                                <span>Recovering deleted items</span>
+                                <i class="fa-solid fa-chevron-right"
+                                    style="margin-left: auto; font-size: 0.8rem; color: var(--text-secondary);"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-support"
+                        style="background: rgba(79, 70, 229, 0.05); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary);">Still need help?</h4>
+                        <p style="margin: 0 0 1rem 0; color: var(--text-secondary); font-size: 0.9rem;">Our support team
+                            is available 24/7 to assist you.</p>
+                        <button class="btn-primary" style="margin: 0 auto; width: fit-content;">Contact Support</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Management - Admin Console</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-shield-halved brand-icon"></i>
+                <span>Admin Console</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="admin.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="admin-users.html" class="nav-item active">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="admin-storage.html" class="nav-item">
+                    <i class="fa-solid fa-server"></i>
+                    <span>Storage</span>
+                </a>
+                <a href="admin-activity.html" class="nav-item">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Activity Logs</span>
+                </a>
+                <a href="admin-settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Back to User View</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <h2 class="page-title">Users Management</h2>
+
+                <div class="user-actions">
+                    <button class="action-btn theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fa-regular fa-moon"></i>
+                    </button>
+                    <div class="user-profile" id="profileDropdownTrigger">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff" alt="Admin">
+                        <!-- Dropdown Menu -->
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <span class="user-name">Admin User</span>
+                                <span class="user-email">admin@cloudfiles.com</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="../index.html" class="dropdown-item">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Admin Content -->
+            <div class="admin-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>All Users (1,248)</h3>
+                        <button class="new-btn" style="margin:0; padding: 0.5rem 1rem;"><i class="fa-solid fa-plus"></i>
+                            Add User</button>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Last Active</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="https://ui-avatars.com/api/?name=Sarah+Jenkins&background=random"
+                                            class="avatar-sm">
+                                        Sarah Jenkins
+                                    </div>
+                                </td>
+                                <td>sarah@example.com</td>
+                                <td><span class="badge user">User</span></td>
+                                <td><span class="status-dot active"></span> Active</td>
+                                <td>2 mins ago</td>
+                                <td><button class="icon-btn"><i class="fa-solid fa-ellipsis"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="https://ui-avatars.com/api/?name=Mike+Ross&background=random"
+                                            class="avatar-sm">
+                                        Mike Ross
+                                    </div>
+                                </td>
+                                <td>mike@example.com</td>
+                                <td><span class="badge admin">Admin</span></td>
+                                <td><span class="status-dot active"></span> Active</td>
+                                <td>15 mins ago</td>
+                                <td><button class="icon-btn"><i class="fa-solid fa-ellipsis"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="https://ui-avatars.com/api/?name=David+Clark&background=random"
+                                            class="avatar-sm">
+                                        David Clark
+                                    </div>
+                                </td>
+                                <td>david@example.com</td>
+                                <td><span class="badge user">User</span></td>
+                                <td><span class="status-dot offline"></span> Offline</td>
+                                <td>1 day ago</td>
+                                <td><button class="icon-btn"><i class="fa-solid fa-ellipsis"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>
