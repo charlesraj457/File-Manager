@@ -1,0 +1,55 @@
+/* List View Adjustments for New Structure */
+.grid-row.list-view .file-info>div {
+    display: contents;
+    /* Flattens the wrapper so Name and Button become direct children of .file-info */
+}
+
+.grid-row.list-view .file-info {
+    /* Existing: flex-direction: row; justify-content: space-between; align-items: center; */
+    gap: 1rem;
+    /* Ensure gap between items */
+}
+
+.grid-row.list-view .file-name {
+    order: 1;
+    flex: 1;
+    /* Name takes available space */
+    width: auto;
+    /* Reset fixed width */
+    margin-right: 1rem;
+}
+
+.grid-row.list-view .file-meta {
+    order: 2;
+    width: 150px;
+    /* Fixed width for alignment */
+    text-align: right;
+    white-space: nowrap;
+}
+
+.grid-row.list-view .more-actions-btn {
+    order: 3;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.2s;
+    opacity: 0;
+    /* Hide by default in list view until hover */
+}
+
+.grid-row.list-view .file-card:hover .more-actions-btn {
+    opacity: 1;
+}
+
+.grid-row.list-view .more-actions-btn:hover {
+    background: var(--bg-light);
+}
+
+/* Ensure starred items (which have extra wrapper or icon in name area) look good */
+/* In app.js, starred items structure was:
+   <div style="display: flex; gap: 0.5rem; align-items: center;"> [Star] [Button] </div>
+   Wait, looking at app.js again for starred:
+   <div ...> <span class="file-name">...</span> <div ...> [Star] [Button] </div> </div>
+   This is Wrapper -> [Name] [RightWrapper -> Star, Button]
+   If Wrapper is display:contents:
+   .file-info children: Name, RightWrapper, Meta (??? No meta in starred items render function currently? Let's check)
+*/
