@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "WxLlBOG1yOtnqp3rqU7wzhQ0IR8xD4vBui5PsGeNkMY=",
+  "Source": "CloudVault.Server",
+  "BasePath": "_content/CloudVault.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
