@@ -1,0 +1,57 @@
+<!-- File Detail Modal -->
+<div id="fileDetailModal" class="modal-overlay">
+    <div class="modal-content file-preview-modal">
+        <button class="close-modal" id="closeDetailModal"><i class="fa-solid fa-xmark"></i></button>
+
+        <div class="preview-section">
+            <!-- Image Preview -->
+            <div id="imagePreview" class="preview-container" style="display: none;">
+                <img src="" alt="File Preview" class="file-preview-image">
+            </div>
+            <!-- Icon Preview -->
+            <div id="iconPreview" class="preview-container icon-only">
+                <i class="fa-regular fa-file"></i>
+            </div>
+        </div>
+
+        <div class="file-details-container">
+            <h3 class="file-name-heading" id="detailFileName">File Name.ext</h3>
+
+            <div class="meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value" id="detailFileType">PDF Document</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Size</span>
+                    <span class="meta-value" id="detailFileSize">2.4 MB</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Uploaded by</span>
+                    <div class="meta-user">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" class="avatar-xs">
+                        <span class="meta-value" id="detailOwner">John Doe</span>
+                    </div>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Upload date</span>
+                    <span class="meta-value" id="detailUploadDate">Oct 24, 2025</span>
+                </div>
+            </div>
+
+            <div class="modal-actions-row">
+                <button class="btn-secondary" id="versionHistoryBtn">
+                    <i class="fa-solid fa-code-branch"></i> Version History
+                </button>
+                <button class="btn-primary" id="downloadFileBtn">
+                    <i class="fa-solid fa-download"></i> Download
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+
+</html>

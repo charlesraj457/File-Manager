@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Logs - Admin Console</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-shield-halved brand-icon"></i>
+                <span>Admin Console</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="admin.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="admin-storage.html" class="nav-item">
+                    <i class="fa-solid fa-server"></i>
+                    <span>Storage</span>
+                </a>
+                <a href="admin-activity.html" class="nav-item active">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Activity Logs</span>
+                </a>
+                <a href="admin-settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Back to User View</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Sidebar Overlay (Mobile) -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="bottom-nav">
+            <a href="admin.html" class="bottom-nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Overview</span>
+            </a>
+            <a href="admin-users.html" class="bottom-nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+            <a href="admin-storage.html" class="bottom-nav-item">
+                <i class="fa-solid fa-server"></i>
+                <span>Storage</span>
+            </a>
+            <a href="admin-activity.html" class="bottom-nav-item active">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Activity</span>
+            </a>
+            <button class="bottom-nav-item" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <h2 class="page-title">System Activity Logs</h2>
+                <div class="user-actions">
+                    <button class="action-btn theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fa-regular fa-moon"></i>
+                    </button>
+                    <div class="user-profile" id="profileDropdownTrigger">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff" alt="Admin">
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <span class="user-name">Admin User</span>
+                                <span class="user-email">admin@cloudfiles.com</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="../index.html" class="dropdown-item">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="search-bar" style="flex: 0 1 400px; background: var(--bg-light);">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="Search logs...">
+                        </div>
+                        <button class="filter-btn"><i class="fa-solid fa-filter"></i> Filter</button>
+                    </div>
+
+                    <div class="logs-list">
+                        <div class="log-item">
+                            <div class="log-icon upload"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                            <div class="log-details">
+                                <span class="log-user">Sarah Jenkins</span>
+                                <span class="log-action">uploaded 15 files to <strong>Marketing Assets</strong></span>
+                                <span class="log-time">2 mins ago</span>
+                            </div>
+                        </div>
+                        <div class="log-item">
+                            <div class="log-icon delete"><i class="fa-regular fa-trash-can"></i></div>
+                            <div class="log-details">
+                                <span class="log-user">Mike Ross</span>
+                                <span class="log-action">deleted <strong>Q3_Report_Draft.pdf</strong></span>
+                                <span class="log-time">15 mins ago</span>
+                            </div>
+                        </div>
+                        <!-- ... repeated logs for demo ... -->
+                        <div class="log-item">
+                            <div class="log-icon login"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+                            <div class="log-details">
+                                <span class="log-user">David Clark</span>
+                                <span class="log-action">logged in from New IP (192.168.1.45)</span>
+                                <span class="log-time">45 mins ago</span>
+                            </div>
+                        </div>
+                        <div class="log-item">
+                            <div class="log-icon share"><i class="fa-solid fa-share-nodes"></i></div>
+                            <div class="log-details">
+                                <span class="log-user">Emily White</span>
+                                <span class="log-action">shared <strong>Project_X</strong> with External User</span>
+                                <span class="log-time">1 hour ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

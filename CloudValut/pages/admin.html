@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CloudFiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar admin-sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-shield-halved brand-icon"></i>
+                <span>Admin Console</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="admin.html" class="nav-item active">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="admin-users.html" class="nav-item">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Users</span>
+                </a>
+                <a href="admin-storage.html" class="nav-item">
+                    <i class="fa-solid fa-server"></i>
+                    <span>Storage</span>
+                </a>
+                <a href="admin-activity.html" class="nav-item">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Activity Logs</span>
+                </a>
+                <a href="admin-settings.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Back to User View</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Sidebar Overlay (Mobile) -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="bottom-nav">
+            <a href="admin.html" class="bottom-nav-item active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Overview</span>
+            </a>
+            <a href="admin-users.html" class="bottom-nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </a>
+            <a href="admin-storage.html" class="bottom-nav-item">
+                <i class="fa-solid fa-server"></i>
+                <span>Storage</span>
+            </a>
+            <a href="admin-activity.html" class="bottom-nav-item">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Activity</span>
+            </a>
+            <button class="bottom-nav-item" id="mobileMenuBtn">
+                <i class="fa-solid fa-bars"></i>
+                <span>Menu</span>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-bar">
+                <h2 class="page-title">Dashboard Overview</h2>
+
+                <div class="user-actions">
+                    <button class="action-btn theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <i class="fa-regular fa-moon"></i>
+                    </button>
+                    <div class="user-profile" id="profileDropdownTrigger">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=0D8ABC&color=fff" alt="Admin">
+                        <!-- Dropdown Menu -->
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="dropdown-header">
+                                <span class="user-name">Admin User</span>
+                                <span class="user-email">admin@cloudfiles.com</span>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <a href="../index.html" class="dropdown-item">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Admin Dashboard Content -->
+            <div class="admin-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon users">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Users</h3>
+                            <p class="stat-value">1,248</p>
+                            <span class="stat-change positive">+12% this month</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon storage">
+                            <i class="fa-solid fa-hard-drive"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Storage Used</h3>
+                            <p class="stat-value">4.2 TB</p>
+                            <span class="stat-change neutral">58% of capacity</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon files">
+                            <i class="fa-solid fa-file-circle-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Files</h3>
+                            <p class="stat-value">85.4k</p>
+                            <span class="stat-change positive">+5.3k new files</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon activity">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Sessions</h3>
+                            <p class="stat-value">342</p>
+                            <span class="stat-change positive">Currently online</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Logs & Charts Section -->
+                <div class="dashboard-grid">
+                    <!-- Recent Activity Logs -->
+                    <div class="card activity-logs">
+                        <div class="card-header">
+                            <h3>Recent Activity Logs</h3>
+                            <button class="view-all-btn">View All</button>
+                        </div>
+                        <div class="logs-list">
+                            <div class="log-item">
+                                <div class="log-icon upload"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <div class="log-details">
+                                    <span class="log-user">Sarah Jenkins</span>
+                                    <span class="log-action">uploaded 15 files to <strong>Marketing
+                                            Assets</strong></span>
+                                    <span class="log-time">2 mins ago</span>
+                                </div>
+                            </div>
+                            <div class="log-item">
+                                <div class="log-icon delete"><i class="fa-regular fa-trash-can"></i></div>
+                                <div class="log-details">
+                                    <span class="log-user">Mike Ross</span>
+                                    <span class="log-action">deleted <strong>Q3_Report_Draft.pdf</strong></span>
+                                    <span class="log-time">15 mins ago</span>
+                                </div>
+                            </div>
+                            <div class="log-item">
+                                <div class="log-icon login"><i class="fa-solid fa-arrow-right-to-bracket"></i></div>
+                                <div class="log-details">
+                                    <span class="log-user">David Clark</span>
+                                    <span class="log-action">logged in from New IP (192.168.1.45)</span>
+                                    <span class="log-time">45 mins ago</span>
+                                </div>
+                            </div>
+                            <div class="log-item">
+                                <div class="log-icon share"><i class="fa-solid fa-share-nodes"></i></div>
+                                <div class="log-details">
+                                    <span class="log-user">Emily White</span>
+                                    <span class="log-action">shared <strong>Project_X</strong> with External User</span>
+                                    <span class="log-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="log-item">
+                                <div class="log-icon upload"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                <div class="log-details">
+                                    <span class="log-user">John Doe</span>
+                                    <span class="log-action">uploaded <strong>Site_Plan_v2.dwg</strong></span>
+                                    <span class="log-time">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Storage Breakdown (Visual Placeholder) -->
+                    <div class="card storage-breakdown">
+                        <div class="card-header">
+                            <h3>Storage Distribution</h3>
+                        </div>
+                        <div class="storage-visual">
+                            <div class="storage-type">
+                                <div class="type-info">
+                                    <span class="type-name"><i class="fa-regular fa-image" style="color: #4F46E5;"></i>
+                                        Images</span>
+                                    <span class="type-size">1.8 TB</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="fill" style="width: 45%; background: #4F46E5;"></div>
+                                </div>
+                            </div>
+                            <div class="storage-type">
+                                <div class="type-info">
+                                    <span class="type-name"><i class="fa-regular fa-file-video"
+                                            style="color: #ef4444;"></i> Videos</span>
+                                    <span class="type-size">1.2 TB</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="fill" style="width: 30%; background: #ef4444;"></div>
+                                </div>
+                            </div>
+                            <div class="storage-type">
+                                <div class="type-info">
+                                    <span class="type-name"><i class="fa-regular fa-file-lines"
+                                            style="color: #3b82f6;"></i> Documents</span>
+                                    <span class="type-size">800 GB</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="fill" style="width: 15%; background: #3b82f6;"></div>
+                                </div>
+                            </div>
+                            <div class="storage-type">
+                                <div class="type-info">
+                                    <span class="type-name"><i class="fa-solid fa-box-archive"
+                                            style="color: #f59e0b;"></i> Others</span>
+                                    <span class="type-size">400 GB</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="fill" style="width: 10%; background: #f59e0b;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/app.js"></script>
+    <script>
+        // Simple script to toggle active state in admin sidebar
+        // This is separate to avoid conflicts with user dashboard logic if needed
+        // but 'app.js' handles the theme and dropdowns well.
+    </script>
+</body>
+
+</html>

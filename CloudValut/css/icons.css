@@ -1,0 +1,20 @@
+/* Folder Upload Icon - Premium Styling */
+.icon-folder-upload {
+    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Fallback */
+    font-size: 1.1rem;
+    filter: drop-shadow(0 2px 4px rgba(168, 85, 247, 0.2));
+    display: inline-block;
+}
+
+[data-theme="dark"] .icon-folder-upload {
+    background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(192, 132, 252, 0.3));
+}
